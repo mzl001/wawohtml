@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- 公共meta -->
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+<!-- <meta name="viewport" content="width=device-width,initial-scale=1.0"> -->
+<meta http-equiv="x-dns-prefetch-control" content="on">
+<meta name="keywords" content="优谷科技_娃哦抓娃娃H5">
+<meta name="description" content="优谷科技_娃哦抓娃娃H5">
+<link rel="icon" href="/favicon.ico?t=201706023" type="image/x-icon">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/apple-touch-icon-114-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72-precomposed.png">
+<link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-57-precomposed.png">
+<!--link rel="stylesheet" href="//at.alicdn.com/t/font_587968_0z3wcs8q1rurqkt9.css"-->
+<meta name="format-detection" content="telephone=no, email=no" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="renderer" content="webkit" />
+<link rel="stylesheet" href="//at.alicdn.com/t/font_587968_xts1ybu0yc26s9k9.css">
+<link rel="stylesheet" href="/static/css/reset.css">
+<!--[if lt IE 9]>
+网站在IE8及IE8以下浏览器体验不佳，请更换其他如谷歌、火狐等主流浏览器浏览
+<![endif]-->
+    <link rel="stylesheet" href="/static/css/reset.css">
+    <link rel="stylesheet" href="static/js/Swiper-4.0.7/css/swiper.min.css">
+    <title>抓娃娃房间列表</title>
+    <style>
+        #swiper-wrapper .swiper-slide {
+            padding: .2rem;
+        }
+        #swiper-wrapper img {
+            display: block;
+            height: 100%;
+        }
+        #app {
+            height: auto!important;
+        }
+    </style>
+    <link rel="stylesheet" href="/static/css/common.css">
+</head>
+
+<body>
+<div id="app" class="index none">
+    <!-- 顶部 -->
+    <header class="ta-c header">
+        <div class="pr flex l-center a-center h50">
+            <div class="pb masonry flex l-center recharge-open" id="room-money">
+                <img src="static/images/ico_gold.png">
+                <div id="balance">0</div>
+            </div>
+            <div class="f16 middle-logo">
+                <img src="static/images/logo_top.png" alt="">
+            </div>
+            <a class="user-img pb" href="/userCenter/index.html">
+                <img id="userImage" src="" alt="">
+            </a>
+        </div>
+    </header>
+
+    <div class="wrap pt100" style="padding-bottom: 1rem;">
+        <!-- 广告图片 -->
+        <div class="swiper-container swiper-container-ad" style="min-height: 2.64rem">
+            <div class="swiper-wrapper" id="swiper-wrapper-ad"></div>
+        </div>
+        <!-- 轮播抓娃娃机的人抓取娃娃的情况 -->
+        <div class="text flex l-center">
+            <i class="iconfont icon-tongzhi"></i>
+            <div class="swiper-container swiper-container-carousel slider am-carousel my-carousel am-carousel-vertical">
+                <ul class="swiper-wrapper slider-list" id="slider-list">
+                    <!--li class="swiper-slide slider-slide"><div class="TopHitWawa"> 恭喜 <i>Monnis</i> 抓到了 变身恐龙布朗熊</div></li>
+                    <li class="swiper-slide slider-slide"><div class="TopHitWawa"> 恭喜 ' + e.memberName + ' 抓到了"' + e.goodsName + '"</div></li-->
+                </ul>
+            </div>
+        </div>
+        <!-- 房间列表 -->
+        <div class="main flex flex-wrap" id="room-list">
+            <!--a class="index-item free" href="/wawaji/index.html?rid=RF795AF69C8EA1A40DEA61F51E844CC8C">
+                <div class="pr">
+                    
+                    <img src="http://xxs-wwj.zego.im:8899/image/fhb.png" alt=""></div>
+                <div class="title flex l-center">
+                    <div class="name f14 flex1 ">粉红豹</div>
+                    <div class="money flex l-center ">
+                        <img src="static/images/ico_gold.png" alt="" class="ml5" style="width:0.26rem">
+                        20
+                    </div>
+                </div>
+            </a-->
+        </div>
+    </div>
+    <!-- 充值界面 -->
+    <div id="recharge-wrapper" class="Mask flex l-center a-center">
+        <div class="Mask-details-wrap">
+            <div class="Mask-details">
+                <div class="Mask-details-title flex l-center a-center bold">金币充值</div>
+                <div class="Mask-details-main">
+                    <div class="Mask-details-cell">
+                        <!-- 充值金额列表 -->
+                        <div id="addmoney-wrapper" class="Mask-ul">
+                            <!--div class="addMoney-item flex l-center">
+                                <div class="addMoney-title flex l-center">
+                                    <div></div>
+                                    <span class="addMoney-arrivecount">60</span> 
+                                </div>
+                                <div class="addMoney-label ml15 f12"></div>
+                                <div class="addMoney-text flex1 flex a-right red" data-num="1">
+                                    <div class="inner-text" data-price="600">30</div>
+                                </div>
+                            </div>
+                            <div class="addMoney-item flex l-center">
+                                <div class="addMoney-title flex l-center">
+                                    <div></div>
+                                    <span class="addMoney-arrivecount">100</span> 
+                                </div>
+                                <div class="addMoney-label ml15 f12">送10</div>
+                                <div class="addMoney-text flex1 flex a-right red" data-num="10000">
+                                    <div class="inner-text" data-price="1000">￥50</div>
+                                </div>
+                            </div>
+                            <div class="addMoney-item flex l-center">
+                                <div class="addMoney-title flex l-center">
+                                    <div></div>
+                                    <span class="addMoney-arrivecount">200</span> 
+                                </div>
+                                <div class="addMoney-label ml15 f12">送30</div>
+                                <div class="addMoney-text flex1 flex a-right red" data-num="10001">
+                                    <div class="inner-text" data-price="2000">￥30</div>
+                                </div>
+                            </div>
+                            <div class="addMoney-item flex l-center">
+                                <div class="addMoney-title flex l-center">
+                                    <div></div>
+                                    <span class="addMoney-arrivecount">500</span> 
+                                </div>
+                                <div class="addMoney-label ml15 f12">送90</div>
+                                <div class="addMoney-text flex1 flex a-right red" data-num="10002">
+                                    <div class="inner-text" data-price="5000">￥100</div>
+                                </div>
+                            </div>
+                            <div class="addMoney-item flex l-center">
+                                <div class="addMoney-title flex l-center">
+                                    <div></div>
+                                    <span class="addMoney-arrivecount">1000</span> 
+                                </div>
+                                <div class="addMoney-label ml15 f12">送250</div>
+                                <div class="addMoney-text flex1 flex a-right red" data-num="10003">
+                                    <div class="inner-text" data-price="10000">￥300</div>
+                                </div>
+                            </div>
+                            <div class="addMoney-item flex l-center">
+                                <div class="addMoney-title flex l-center">
+                                    <div></div>
+                                    <span class="addMoney-arrivecount">1000</span> 
+                                </div>
+                                <div class="addMoney-label ml15 f12">送250</div>
+                                <div class="addMoney-text flex1 flex a-right red" data-num="10003">
+                                    <div class="inner-text" data-price="10000">￥500</div>
+                                </div>
+                            </div-->
+                        </div>
+                        <!-- 充值成功页面 -->
+                        <div class="recharge-success">
+                            <div class="icon"></div>
+                            <p class="status">充值成功</p>
+                            <p class="tips">充值后的金币将在2分钟内到账</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="close-recharge" class="Mask-details-btn flex l-center a-center"></div>
+        </div>
+    </div>
+    <!-- footer -->
+    <footer>
+
+    <ul class="flex a-center l-center h50 border-1 unique">
+        <a class="flex1 ta-c" href="/index.html">
+            <p class="bot_icon shouye_on flex l-center a-center"></p>
+            <!-- <p>抓娃娃</p> -->
+        </a>
+        <a class="flex1 ta-c" href="/userCenter/index.html">
+            <p class="bot_icon gerenzhongxin flex l-center a-center"></p>
+            <!-- <p>我的</p> -->
+        </a>
+    </ul>
+    </footer>
+    </div>
+    <script src="static/js/jquery-1.11.3.min.js"></script>
+    <script src="static/js/Swiper-4.0.7/js/swiper.min.js"></script>
+    <script src="static/js/app.js"></script>
+<script type="text/javascript" src="/wawo/static/js/assets/manifest.02c9e759edbfc71b17aa.js"></script><script type="text/javascript" src="/wawo/static/js/assets/common.7ed6683cb69437fdbe54.js"></script><script type="text/javascript" src="/wawo/static/js/assets/index.58f4a505363d6aacbcbf.js"></script></body>
+
+</html>

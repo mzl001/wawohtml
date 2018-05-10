@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- 公共meta -->
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+<!-- <meta name="viewport" content="width=device-width,initial-scale=1.0"> -->
+<meta http-equiv="x-dns-prefetch-control" content="on">
+<meta name="keywords" content="优谷科技_娃哦抓娃娃H5">
+<meta name="description" content="优谷科技_娃哦抓娃娃H5">
+<link rel="icon" href="/favicon.ico?t=201706023" type="image/x-icon">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/apple-touch-icon-114-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72-precomposed.png">
+<link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-57-precomposed.png">
+<!--link rel="stylesheet" href="//at.alicdn.com/t/font_587968_0z3wcs8q1rurqkt9.css"-->
+<meta name="format-detection" content="telephone=no, email=no" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="renderer" content="webkit" />
+<link rel="stylesheet" href="//at.alicdn.com/t/font_587968_xts1ybu0yc26s9k9.css">
+<link rel="stylesheet" href="/static/css/reset.css">
+<!--[if lt IE 9]>
+网站在IE8及IE8以下浏览器体验不佳，请更换其他如谷歌、火狐等主流浏览器浏览
+<![endif]-->
+    <link rel="stylesheet" href="/static/css/common.css"/>
+    <title>娃哦抓娃娃H5</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            -webkit-touch-callout: none;
+        }
+        
+        #app {
+            padding: .1rem .002rem;
+            background: #fdd103 url(../static/images/bg.ee0a19a.png) center no-repeat;
+            background-size: 100% auto;
+            min-height: 100%;
+        }
+        
+        .btn:hover,
+        .btn:active {
+            background: #0d70ff;
+            color: #fff;
+        }
+        
+        .none {
+            display: none;
+        }
+        
+        #frontimg {
+            display: block;
+        }
+        
+        .frontview-wrapper #frontimg,
+        .sideview-wrapper #frontimg {
+            position: relative;
+            display: none;
+            height: 100%;
+            z-index: 3;
+        }
+    </style>
+
+<link href="/wawo/static/css/wawaji/index.a6bc258f0ec2e9ac4bd43011d70ef58a.css" rel="stylesheet"></head>
+<body>
+    <div id="app">
+        <audio id="audio" src="/static/media/click-voice.mp3"></audio>
+        <textarea id="log-view"> </textarea>
+        <!-- <button id="log-btn">日志</button> -->
+        <!-- 流视图 -->
+        <div class="view-wrapper front" id="view-wrapper">
+            <!-- 当前用户信息 -->
+            <div class="money-recharge-wrapper">
+                <!-- 充值按钮 -->
+                <div class="recharge recharge-open" id="recharge-open"></div>
+                <span id="userinfo"></span>
+            </div>
+            <!-- 主播/抓娃娃机的人 -->
+            <div class="anchor-wrapper" id="anchor-wrapper">
+                <img id="userImg" src="" alt="">
+                <div class="anchor">
+                    <span class="username" id="anchor"></span>游戏中
+                </div>
+            </div>
+            <!-- 网络状态/房间在线人数 -->
+            <div class="audience-wrapper clearfix">
+                <ul class="audience-ul">
+                    <!--li class="avatar" id="oNP0iwmEW2xVaqWNxDLePTF2VaCs"><img src="http://thirdwx.qlogo.cn/mmopen/vi_32/zB5R3aa6zvXBtspibpz1VuDPxZTznv793NUlDcx9rUmmS6XKlw1aYeEQrK254Kxfibohxq0DrlkS3zp9nibeibxokQ/132" alt=""></li>
+                    <li class="avatar" id="oNP0iwmEW2xVaqWNxDLePTF2VaCs"><img src="http://thirdwx.qlogo.cn/mmopen/vi_32/zB5R3aa6zvXBtspibpz1VuDPxZTznv793NUlDcx9rUmmS6XKlw1aYeEQrK254Kxfibohxq0DrlkS3zp9nibeibxokQ/132" alt=""></li>
+                    <li class="avatar" id="oNP0iwmEW2xVaqWNxDLePTF2VaCs"><img src="http://thirdwx.qlogo.cn/mmopen/vi_32/zB5R3aa6zvXBtspibpz1VuDPxZTznv793NUlDcx9rUmmS6XKlw1aYeEQrK254Kxfibohxq0DrlkS3zp9nibeibxokQ/132" alt=""></li-->
+                </ul>
+                <div id="audience">0</div><span>人在房间中...</span>
+            </div>
+            <!-- 视角切换按钮 -->
+            <div class="switch-btn" id="switch-btn" data-switch="1"></div>
+            <!-- 日志按钮 -->
+            <div id="log-btn"></div>
+            <!-- 视频 -->
+            <div class="frontview-wrapper">
+                <!-- 正面视图 -->
+                <canvas id="frontview"></canvas>
+                <div id="frontimg" style="background: #1b1b1f url(data:image/jpeg;base64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAAAeAAD/4QMtaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLwA8P3hwYWNrZXQgYmVnaW49Iu+7vyIgaWQ9Ilc1TTBNcENlaGlIenJlU3pOVGN6a2M5ZCI/PiA8eDp4bXBtZXRhIHhtbG5zOng9ImFkb2JlOm5zOm1ldGEvIiB4OnhtcHRrPSJBZG9iZSBYTVAgQ29yZSA1LjMtYzAxMSA2Ni4xNDU2NjEsIDIwMTIvMDIvMDYtMTQ6NTY6MjcgICAgICAgICI+IDxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+IDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCBDUzYgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OEFDODYyQkExRjZFMTFFOEI4NjRBQzYyNjAzMEIzRTQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OEFDODYyQkIxRjZFMTFFOEI4NjRBQzYyNjAzMEIzRTQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4QUM4NjJCODFGNkUxMUU4Qjg2NEFDNjI2MDMwQjNFNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4QUM4NjJCOTFGNkUxMUU4Qjg2NEFDNjI2MDMwQjNFNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pv/uAA5BZG9iZQBkwAAAAAH/2wCEABALCwsMCxAMDBAXDw0PFxsU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) center center no-repeat; background-size:60% auto"></div>
+            </div>
+            <div class="sideview-wrapper">
+                <!-- 侧面视图 -->
+                <canvas id="sideview"></canvas>
+            </div>
+        </div>
+        <!-- 按视频流率比例  设置视频宽高 -->
+        <script>
+            if (!navigator.userAgent.match(/Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile/i)) {
+                document.getElementsByTagName('html')[0].style.width = 375 + 'px';
+                document.getElementsByTagName('html')[0].style.maxHeight = 690 + 'px';
+            }
+            // 想要视频满屏，需要canvas的宽高比例和视频的视频流比例一样
+            // 如果视频流为高640，宽480，那么比例为640/480 = 1.33
+            // 这样，canvas的高和宽的比例也必须是1.33
+
+            // 在本例子中，使用rem布局，浏览器会有一个计算过程，此时动态获取的viewWidth并不准确, 会偏小一点
+            // 有一定的误差，所以设置的viewHeight的时候，用的比例是1.3， 如果用的1.33，那么渲染出来的视频上下处可能会有黑边
+            var viewWrapper = document.getElementById('view-wrapper');
+            var viewWidth = viewWrapper.clientWidth;
+            var viewHeight = viewWidth * 1.3;
+            viewWrapper.style.height = viewHeight + 'px';
+
+
+            var frontimg = document.getElementById('frontimg');
+            frontimg.style.display = 'block';
+        </script>
+
+        <div class="footer-basic">
+            <!-- 预约按钮 -->
+            <div class="appointment-wrapper" id="appointment-wrapper">
+                <div class="apply-wrapper" id="apply-wrapper">
+                    <div class="btn cancel" id="cancel">取消预约</div>
+                    <div class="btn apply" id="apply"><div class="cost"><img src="../static/images/ico_gold.png"><span id="price">0</span>/次</div>预约抓娃娃</div>
+                </div>
+                <div class="line-up-wrapper">
+                    <div class="before-queue" id="before-queue">
+                        <!--span><em>当前排队：</em><em id="before-queueNum">0</em>人</span-->
+                    </div>
+                    <div class="after-queue" id="after-queue">
+                        <span><em>预约成功，你排在第</em><em id="after-queueNum">0</em>位</span>
+                    </div>
+                </div>
+            </div>
+            <!-- 娃娃机详情图片 -->
+            <div class="wawa-details-btn"></div>
+        </div>
+
+        <!-- 收到回复是否要上机的确认选择倒计时 -->
+        <div class="upornot-wrapper" id="upornot-wrapper">
+            <!-- <div class="tips">请准备上机，上机后开始计费，确认上机吗？（<em id="upornot-count-down"></em>s）</div> -->
+            <div class="mask"></div>
+            <div class="icon"></div>
+            <div class="upornot-cancel" id="upornot-cancel">放弃</div>
+            <div class="upornot-confirm" id="upornot-confirm">开始游戏(<em id="upornot-count-down">10</em>s)</div>
+        </div>
+
+        <!-- 操作按钮 -->
+        <div class="operate-wrapper clearfix" id="operate-wrapper">
+            <!-- 抓取按钮 -->
+            <div class="action-wrapper">
+                <!-- 上机后的游戏倒计时 -->
+                <div class="count-down-wrapper" id="count-down-wrapper"><em id="count-down">30</em>S</div>
+                <div class="btn go" id="go"></div>
+            </div>
+            <!-- 方向按钮 -->
+            <div class="direct-wrapper front" id="direct-wrapper">
+                <div class="top">
+                    <div class="btn-mask"></div>
+                    <div class="btn opr-btn" id="front-up" onmousedown="tapEvent(event, 'front-up')" ontouchstart="tapEvent(event, 'front-up')"></div>
+                    <div class="btn opr-btn side-btn" id="side-up" onmousedown="tapEvent(event, 'side-up')" ontouchstart="tapEvent(event, 'side-up')"></div>
+                </div>
+                <div class="left">
+                    <div class="btn-mask"></div>
+                    <div class="btn opr-btn" id="front-left" onmousedown="tapEvent(event, 'front-left')" ontouchstart="tapEvent(event, 'front-left')"></div>
+                    <div class="btn opr-btn side-btn" id="side-left" onmousedown="tapEvent(event, 'side-left')" ontouchstart="tapEvent(event, 'side-left')"></div>
+                </div>
+                <div class="right">
+                    <div class="btn-mask"></div>
+                    <div class="btn opr-btn" id="front-right" onmousedown="tapEvent(event, 'front-right')" ontouchstart="tapEvent(event, 'front-right')"></div>
+                    <div class="btn opr-btn side-btn" id="side-right" onmousedown="tapEvent(event, 'side-right')" ontouchstart="tapEvent(event, 'side-right')"></div>
+                </div>
+                <div class="bottom">
+                    <div class="btn-mask"></div>
+                    <div class="btn opr-btn" id="front-down" onmousedown="tapEvent(event, 'front-down')" ontouchstart="tapEvent(event, 'front-down')"></div>
+                    <div class="btn opr-btn side-btn" id="side-down" onmousedown="tapEvent(event, 'side-down')" ontouchstart="tapEvent(event, 'side-down')"></div>
+                </div>
+            </div>
+        </div>
+        <!-- 抓取结果界面 -->
+        <div class="result-wrapper" id="result-wrapper">
+            <div class="mask"></div>
+            <!-- 成功界面 -->
+            <div class="successful">
+                <h2>终于抓到了！</h2>
+                <p>娃娃已经落入你的娃娃账户,<br>可在<a href="/userCenter">个人中心</a>查看。</p>
+            </div>
+            <!-- 失败界面 -->
+            <div class="failure">
+                <h2>还差一点点就抓到了！</h2>
+                <p>是否再来一次？</p>
+            </div>
+            <!-- <div class="back" id="back">返回娃娃机(<em id="back-count-down">10</em>s)</div> -->
+            <div class="btn-bar">
+                <div class="back" id="back">稍后再试</div>
+                <div class="play-again disabled" id="play-again">再来一局(<em id="play-again-count-down">10</em>s)</div>
+            </div>
+        </div>
+        <!-- 娃娃详情 -->
+        <div id="wawaDetails" class="Mask flex l-center a-center wawa-details">
+            <div class="detailsBox">
+                <span class="detailsCloseBtn"></span>
+                <div class="detailstit"></div>
+                <!--dl class="detailList"><dt><h2>恐龙</h2><p>可爱卡通毛绒玩具</p></dt><dd>名称:<span>恐龙毛绒玩具</span></dd><dd>玩具类型:<span>公仔</span></dd><dd>高度:<span>20cm</span></dd><dd>颜色:<span>随机发货</span></dd></dl-->
+                <div class="details-cell">
+                    <ul id="wawa-imgs" class="Mask-details-ul">
+                        <!--li>
+                            <img src="http://xxs-wwj.zego.im:8899/image/wjxxx1.jpg" alt="">
+                        </li><li>
+                            <img src="http://xxs-wwj.zego.im:8899/image/wjxxx2.jpg" alt="">
+                        </li><li>
+                            <img src="http://xxs-wwj.zego.im:8899/image/wjxxx1.jpg" alt="">
+                        </li-->
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 充值界面 -->
+        <div id="recharge-wrapper" class="Mask flex l-center a-center">
+            <div class="Mask-details-wrap">
+                <div class="Mask-details">
+                    <div class="Mask-details-title flex l-center a-center bold">金币充值</div>
+                    <div class="Mask-details-main">
+                        <div class="Mask-details-cell">
+                            <!-- 充值金额列表 -->
+                            <div id="addmoney-wrapper" class="Mask-ul">
+                            <!-- <div class="addMoney-item flex l-center">
+                                    <div class="addMoney-title flex l-center">
+                                        <div></div>
+                                        <span class="addMoney-arrivecount">60</span> 
+                                    </div>
+                                    <div class="addMoney-label ml15 f12"></div>
+                                    <div class="addMoney-text flex1 flex a-right red" data-num="1">
+                                        <div class="inner-text" data-price="600"></div>
+                                    </div>
+                                </div>
+                                <div class="addMoney-item flex l-center">
+                                    <div class="addMoney-title flex l-center">
+                                        <div></div>
+                                        <span class="addMoney-arrivecount">100</span> 
+                                    </div>
+                                    <div class="addMoney-label ml15 f12">送10</div>
+                                    <div class="addMoney-text flex1 flex a-right red" data-num="10000">
+                                        <div class="inner-text" data-price="1000"></div>
+                                    </div>
+                                </div>
+                                <div class="addMoney-item flex l-center">
+                                    <div class="addMoney-title flex l-center">
+                                        <div></div>
+                                        <span class="addMoney-arrivecount">200</span> 
+                                    </div>
+                                    <div class="addMoney-label ml15 f12">送30</div>
+                                    <div class="addMoney-text flex1 flex a-right red" data-num="10001">
+                                        <div class="inner-text" data-price="2000"></div>
+                                    </div>
+                                </div>
+                                <div class="addMoney-item flex l-center">
+                                    <div class="addMoney-title flex l-center">
+                                        <div></div>
+                                        <span class="addMoney-arrivecount">500</span> 
+                                    </div>
+                                    <div class="addMoney-label ml15 f12">送90</div>
+                                    <div class="addMoney-text flex1 flex a-right red" data-num="10002">
+                                        <div class="inner-text" data-price="5000"></div>
+                                    </div>
+                                </div>
+                                <div class="addMoney-item flex l-center">
+                                    <div class="addMoney-title flex l-center">
+                                        <div></div>
+                                        <span class="addMoney-arrivecount">1000</span> 
+                                    </div>
+                                    <div class="addMoney-label ml15 f12">送250</div>
+                                    <div class="addMoney-text flex1 flex a-right red" data-num="10003">
+                                        <div class="inner-text" data-price="10000"></div>
+                                    </div>
+                                </div> -->
+                            </div>
+                            <!-- 充值成功页面 -->
+                            <div class="recharge-success">
+                                <div class="icon"></div>
+                                <p class="status">充值成功</p>
+                                <p class="tips">充值后的金币将在2分钟内到账</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="close-recharge" class="Mask-details-btn flex l-center a-center"></div>
+            </div>
+        </div>
+
+    </div>
+    <!-- 公共js外引文件 -->
+<script src="../../static/js/jquery-1.11.3.min.js"></script>
+<script src="../../static/js/app.js"></script>
+<script type="text/javascript" src="/wawo/static/js/assets/manifest.02c9e759edbfc71b17aa.js"></script><script type="text/javascript" src="/wawo/static/js/assets/common.7ed6683cb69437fdbe54.js"></script><script type="text/javascript" src="/wawo/static/js/assets/wawaji/index.049e0e87b4c6c933500b.js"></script></body>
+
+</html>
